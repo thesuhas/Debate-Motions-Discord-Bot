@@ -30,9 +30,13 @@ async def help(ctx):
     motions = 'List of motions, keywords and number are optional parameters. Default is 5.'
     keywords = 'List of available keywords'
     random = 'List of motions, randomly chosen'
+    add = 'Used to add a keyword'
+    delete = 'Used to delete a keyword'
     embed.add_field(name = 'motions `keywords` `number`', value = motions, inline = True)
     embed.add_field(name = 'Keywords', value = keywords, inline = True)
     embed.add_field(name = 'random', value = random)
+    embed.add_field(name ='add', value = add, inline = False)
+    embed.add_field(name = 'delete', value = delete)
     await ctx.send(embed = embed)
 
 @client.command()
@@ -58,7 +62,7 @@ async def motions(ctx, *, words):
         await ctx.send(motion_scrape(words))
 
 @client.command(aliases=['add'])
-async def key_append(ctx, keyword):
+async def key_append(ctx, *, keyword):
     global keys
     # To add a keyword to the list
     keys.append(keyword)
@@ -68,16 +72,17 @@ async def key_append(ctx, keyword):
         inputfile.write(keyword)
 
 @client.command(aliases=['delete'])
-async def key_delete(ctx, keyword):
+async def key_delete(ctx, *, keyword):
     global keys
     # To delete a keyword from the list
     try:
         keys.remove(keyword)
+        
         # Overwrite csv file
-        with open('keywords.csv', 'w') as inputfile:
+        with open('keywords.csv', 'w', newline='') as inputfile:
             writer = csv.writer(inputfile)
             for i in keys:
-                writer.writerow(i)  
+                writer.writerow([i])  
     except:
         await ctx.send("Keyword not in given list. Use `.keywords` to get the list of available keywords")
 
