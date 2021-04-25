@@ -35,8 +35,8 @@ async def help(ctx):
     embed.add_field(name = 'motions `keywords` `number`', value = motions, inline = True)
     embed.add_field(name = 'Keywords', value = keywords, inline = True)
     embed.add_field(name = 'random', value = random)
-    embed.add_field(name ='add', value = add, inline = False)
-    embed.add_field(name = 'delete', value = delete)
+    embed.add_field(name ='add', value = add)
+    embed.add_field(name = 'delete', value = delete, inline = True)
     await ctx.send(embed = embed)
 
 @client.command()
