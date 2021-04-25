@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from web_scrape import motion_scrape
+from web_scrape import motion_scrape, random_words
 import csv
 
 # Create a bot instance and sets a command prefix
@@ -86,6 +86,10 @@ async def key_delete(ctx, *, keyword):
     except:
         await ctx.send("Keyword not in given list. Use `.keywords` to get the list of available keywords")
 
+
+@client.command()
+async def random(ctx, num = 5):
+    await ctx.send(random_words(num))
 
 # Runs the client (bot)
 client.run('ODM1NzUyNjU3MTM4MzUyMTM4.YIUBUA.w3xIDb4hOwOSpBbKOiJzs1-CMAo')
