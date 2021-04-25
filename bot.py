@@ -24,6 +24,34 @@ async def help(ctx):
     embed.add_field(name = 'random', value = random)
     await ctx.send(embed = embed)
 
+@client.command()
+async def themes(ctx):
+    theme = ['IR',
+            'Econ',
+            'Feminism',
+            'IP',
+            'Narratives',
+            'Policy',
+            "US Pol"]
+    
+    abbrev = {"IR": "International Relations",
+                "Econ": "Economics",
+                "IP": "Indian Politics",
+                "US Pol": "US Politics"}
+
+    s = '**Available Themes:**\n'
+    for i in theme:
+        s += i + '\n'
+
+    s += '\n**Full form of abbreviations:**\n'
+    for i in abbrev:
+        s += i + ': ' + abbrev[i] + '\n'
+
+    await ctx.send(s)
+
+    
+
+    
 
 
 # Runs the client (bot)
